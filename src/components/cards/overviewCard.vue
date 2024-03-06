@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/products/${product.id}`" class="Card_Container">
+  <div class="Card_Container" @click="handleSelectProduct(product)">
     <div class="Card_Wrapper">
       <div class="Card_ImageContainer">
         <img :src="product.image" alt="Card Image" class="Card_Image" />
@@ -10,11 +10,21 @@
         <p class="Card_Price">${{ product.price }}</p>
       </div>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { IProduct } from "@/interfaces/IProduct";
+import { useProductStore } from "@/stores/products";
+import { useRouter } from "vue-router";
+
+const productStore = useProductStore();
+const router = useRouter();
+
+const handleSelectProduct = (product: IProduct) => {
+  productStore.selectProduct(product);
+  router.push("/products/" + product.id);
+};
 
 defineProps<{
   product: IProduct;
@@ -34,6 +44,7 @@ defineProps<{
   flex-direction: column;
   gap: 1rem;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
   &:hover {
     transform: scale(1.05);
   }

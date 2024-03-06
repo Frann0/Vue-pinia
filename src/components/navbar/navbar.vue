@@ -1,13 +1,16 @@
 <template>
   <nav class="Nav_Container">
     <router-link to="/" class="logo_link"> Generic Brand </router-link>
+    <Cart />
     <router-link to="/about" class="nav-link" active-class="nav-linkSelected"
       >Home</router-link
     >
   </nav>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Cart from "../cart/cart.vue";
+</script>
 
 <style scoped lang="scss">
 .Nav_Container {

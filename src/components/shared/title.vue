@@ -2,12 +2,14 @@
 <template>
   <div class="Title_Container">
     <h1 class="Title">{{ title }}</h1>
-    <p class="Title_Paragraph">{{ description }}</p>
+    <p class="Title_Paragraph" v-if="description !== undefined">
+      {{ description }}
+    </p>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{ title: string; description: string }>();
+defineProps<{ title: string; description?: string }>();
 </script>
 
 <style scoped lang="scss">
