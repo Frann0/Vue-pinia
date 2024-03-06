@@ -25,6 +25,17 @@ export const useCartStore = defineStore("cart", () => {
       : cart.value.reduce((acc, item) => acc + item.price, 0);
   };
 
+  const itemOccurence = (id: number) => {
+    return cart.value.filter((item) => item.id === id).length;
+  };
+
+  const getCartItems = () => {
+    //return all unique items in cart
+    return cart.value.filter(
+      (item, index, self) => index === self.findIndex((t) => t.id === item.id),
+    );
+  };
+
   return {
     addToCart,
     cart,
@@ -32,5 +43,7 @@ export const useCartStore = defineStore("cart", () => {
     clearCart,
     removeItem,
     totalValue,
+    itemOccurence,
+    getCartItems,
   };
 });

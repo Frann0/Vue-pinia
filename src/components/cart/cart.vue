@@ -12,15 +12,11 @@
         <p>Your cart is empty</p>
       </div>
       <div v-else class="Cart_Items">
-        <div
-          v-for="(item, index) in cartStore.cart"
-          :key="index"
-          class="Cart_Item"
-        >
-          <p class="Cart_ItemName">{{ item.name }}</p>
-          <p class="Cart_ItemPrice">${{ item.price }}</p>
-          <button @click="cartStore.removeItem(index)">Remove</button>
-        </div>
+        <CartItem
+          v-for="item in cartStore.getCartItems()"
+          :key="item.id"
+          :product="item"
+        />
       </div>
       <div class="Cart_CheckoutContainer">
         <button @click="handleCheckout" class="Cart_Checkout">Checkout</button>
@@ -41,6 +37,7 @@
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cart";
 import { ref } from "vue";
+import CartItem from "./cartItem.vue";
 const cartStore = useCartStore();
 const cartOpen = ref(false);
 
@@ -86,7 +83,7 @@ const handleToggleCartDropdown = () => {
     width: 100%;
     min-width: 300px;
     border-radius: 10px;
-    min-height: 300px;
+    min-height: 400px;
     border: 1px solid var(--color-primary);
     background: var(--color-panel);
     backdrop-filter: blur(10px);
@@ -120,7 +117,7 @@ const handleToggleCartDropdown = () => {
     .Cart_Items {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 10px;
       flex: 1 0 0;
       padding: 1rem;
       overflow-y: auto;
@@ -132,7 +129,9 @@ const handleToggleCartDropdown = () => {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
+      padding: 1rem 1rem 1rem 1rem;
+      border-top: 1px solid var(--color-primary);
+
       .Cart_Checkout {
         padding: 0.5rem;
         background-color: var(--color-accent);
