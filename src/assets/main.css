@@ -1,8 +1,13 @@
 @import "./base.css";
 
 #app {
+  transition: all 0.3s ease-in-out;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  gap: 1rem;
 }
