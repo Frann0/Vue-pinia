@@ -54,6 +54,7 @@ const handleToggleCartDropdown = () => {
   display: flex;
   flex-direction: column;
   position: relative;
+  user-select: none;
   .Cart_Wrapper {
     display: flex;
     justify-content: center;
