@@ -1,5 +1,8 @@
 <template>
-  <div class="Product_Container">
+  <div
+    class="Product_Container"
+    v-if="productStore.selectedProduct !== undefined"
+  >
     <div class="Product_Wrapper">
       <div class="Product_ImageContainer">
         <img
@@ -82,7 +85,8 @@
 import Title from "@/components/shared/title.vue";
 import { useProductStore } from "../stores/products";
 import { useCartStore } from "@/stores/cart";
-import { ref } from "vue";
+import { ref, onBeforeMount, watch } from "vue";
+import { useRoute } from "vue-router";
 
 let sizeOpen = ref(false);
 let colorsOpen = ref(false);
@@ -90,6 +94,8 @@ const selectedColor = ref("");
 const selectedSize = ref("");
 const productStore = useProductStore();
 const cartStore = useCartStore();
+
+const route = useRoute();
 
 const handleToggleSizeDropdown = () => {
   sizeOpen.value = !sizeOpen.value;
@@ -113,6 +119,12 @@ const handleSelectSize = (size: string) => {
 const handleAddToCart = () => {
   cartStore.addToCart(productStore.selectedProduct);
 };
+
+onBeforeMount(async () => {
+  if (productStore.selectedProduct === undefined) {
+    await productStore.selectProductById(Number.parseInt(route.params.id));
+  }
+});
 </script>
 
 <style scoped lang="scss">

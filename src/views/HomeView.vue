@@ -8,8 +8,12 @@ import OverviewCard from "../components/cards/overviewCard.vue";
 const productStore = useProductStore();
 
 onMounted(() => {
-  productStore.generateProducts();
-  console.log("Mounted", productStore.products);
+  if (
+    productStore.products.length === 0 ||
+    productStore.products === undefined
+  ) {
+    productStore.generateProducts();
+  }
 });
 </script>
 

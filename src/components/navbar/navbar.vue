@@ -2,7 +2,7 @@
   <nav class="Nav_Container">
     <router-link to="/" class="logo_link"> Generic Brand </router-link>
     <Cart />
-    <router-link to="/about" class="nav-link" active-class="nav-linkSelected"
+    <router-link to="/" class="nav-link" active-class="nav-linkSelected"
       >Home</router-link
     >
   </nav>

@@ -5,10 +5,10 @@ import type { Ref } from "vue";
 import { faker } from "@faker-js/faker";
 
 export const useProductStore = defineStore("products", () => {
-  const products: Ref<IProduct[]> = ref([{} as IProduct]);
-  const selectedProduct: Ref<IProduct> = ref({} as IProduct);
+  const products: Ref<IProduct[] | undefined> = ref(undefined);
+  const selectedProduct: Ref<IProduct | undefined> = ref(undefined);
 
-  const generateProducts = () => {
+  const generateProducts = async () => {
     const productsArray: IProduct[] = [];
 
     faker.seed(123);
@@ -28,11 +28,25 @@ export const useProductStore = defineStore("products", () => {
     }
     products.value = productsArray;
   };
-  const totalProducts = computed(() => products.value.length);
+  const totalProducts = computed(() =>
+    products.value !== undefined ? products.value.length : 0,
+  );
 
   function selectProduct(product: IProduct) {
     selectedProduct.value = product;
   }
+
+  const selectProductById = async (id: number) => {
+    if (products.value === undefined) {
+      await generateProducts();
+    }
+
+    const product = products.value.find((p) => p.id === id);
+
+    if (product !== undefined) {
+      selectedProduct.value = product;
+    }
+  };
 
   return {
     generateProducts,
@@ -40,5 +54,6 @@ export const useProductStore = defineStore("products", () => {
     totalProducts,
     selectProduct,
     selectedProduct,
+    selectProductById,
   };
 });

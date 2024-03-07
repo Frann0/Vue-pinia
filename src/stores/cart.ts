@@ -8,6 +8,7 @@ export const useCartStore = defineStore("cart", () => {
 
   const addToCart = (product: IProduct) => {
     cart.value.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart.value));
   };
   const totalCartItems = computed(() => cart.value.length);
 
@@ -36,6 +37,13 @@ export const useCartStore = defineStore("cart", () => {
     );
   };
 
+  const deserializeCart = () => {
+    const cartData = localStorage.getItem("cart");
+    if (cartData) {
+      cart.value = JSON.parse(cartData);
+    }
+  };
+
   return {
     addToCart,
     cart,
@@ -45,5 +53,6 @@ export const useCartStore = defineStore("cart", () => {
     totalValue,
     itemOccurence,
     getCartItems,
+    deserializeCart,
   };
 });
