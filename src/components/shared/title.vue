@@ -10,6 +10,7 @@
 
 <script setup lang="ts">
 defineProps<{ title: string; description?: string }>();
+
 </script>
 
 <style scoped lang="scss">

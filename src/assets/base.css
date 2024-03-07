@@ -8,6 +8,7 @@
   --color-text: #08080d;
   --color-background: #fafafc;
   --color-primary: #6467a3;
+  --color-primary-20: rgba(100, 103, 163, 0.5);
   --color-secondary: #b7a8cb;
   --color-accent: #a98cbb;
   --color-panel: rgba(255, 255, 255, 0.1);
@@ -18,9 +19,10 @@
     --color-text: #f2f2f7;
     --color-background: #08080d;
     --color-primary: #6467a3;
+    --color-primary-20: rgba(100, 103, 163, 0.5);
     --color-secondary: #b7a8cb;
     --color-accent: #a98cbb;
-    --color-panel: rgba(255, 255, 255, 0.03);
+    --color-panel: rgba(255, 255, 255, 0.05);
   }
 }
 
@@ -45,13 +47,15 @@
   background: var(--color-panel);
   border-radius: 4px;
   transition: all 0.3s ease-in-out;
+  border: 1px solid rbga(255, 255, 255, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  background: var(--color-primary);
 }
 
 body {
+  overflow: overlay;
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);

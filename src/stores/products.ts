@@ -48,6 +48,8 @@ export const useProductStore = defineStore("products", () => {
     }
   };
 
+  const getProducts = computed(() => products.value);
+
   return {
     generateProducts,
     products,
@@ -55,5 +57,6 @@ export const useProductStore = defineStore("products", () => {
     selectProduct,
     selectedProduct,
     selectProductById,
+    getProducts,
   };
 });

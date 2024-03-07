@@ -38,8 +38,16 @@
 import { useCartStore } from "@/stores/cart";
 import { ref } from "vue";
 import CartItem from "./cartItem.vue";
+import { useRouter } from "vue-router";
 const cartStore = useCartStore();
 const cartOpen = ref(false);
+
+const router = useRouter();
+
+const handleCheckout = () => {
+  router.push("/checkout");
+  cartOpen.value = false;
+};
 
 const handleToggleCartDropdown = () => {
   cartOpen.value = !cartOpen.value;

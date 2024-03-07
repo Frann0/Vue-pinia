@@ -31,7 +31,7 @@ defineProps<{
   flex-direction: row;
   gap: 10px;
   align-items: center;
-  border-bottom: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-primary-20);
   padding-bottom: 10px;
 
   &:last-child {

@@ -30,6 +30,22 @@ export const useCartStore = defineStore("cart", () => {
     return cart.value.filter((item) => item.id === id).length;
   };
 
+  const getTotalValueOfItem = (id: number) => {
+    if (cart.value === undefined) return 0;
+    return itemOccurence(id) * cart.value!.find((item) => item.id === id).price;
+  };
+
+  const removeOneItem = (id: number) => {
+    const index = cart.value.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      cart.value.splice(index, 1);
+    }
+  };
+
+  const removeAllItemOccurence = (id: number) => {
+    cart.value = cart.value.filter((item) => item.id !== id);
+  };
+
   const getCartItems = () => {
     //return all unique items in cart
     return cart.value.filter(
@@ -44,6 +60,20 @@ export const useCartStore = defineStore("cart", () => {
     }
   };
 
+  const setOccurence = (item: IProduct, occurence: number) => {
+    console.log(occurence);
+    if (!occurence) return;
+    removeAllItemOccurence(item.id);
+    for (let i = 0; i < occurence; i++) {
+      addToCart(item);
+    }
+
+    /*
+    for (let i = 0; i < occurence; i++) {
+      addToCart(item);
+    }
+    */
+  };
   return {
     addToCart,
     cart,
@@ -54,5 +84,9 @@ export const useCartStore = defineStore("cart", () => {
     itemOccurence,
     getCartItems,
     deserializeCart,
+    getTotalValueOfItem,
+    removeOneItem,
+    removeAllItemOccurence,
+    setOccurence,
   };
 });

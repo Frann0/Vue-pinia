@@ -1,6 +1,7 @@
 <template>
   <nav class="Nav_Container">
     <router-link to="/" class="logo_link"> Generic Brand </router-link>
+    <SearchBar :items="productStore.products" :keys="'title'" />
     <Cart />
     <router-link to="/" class="nav-link" active-class="nav-linkSelected"
       >Home</router-link
@@ -9,13 +10,18 @@
 </template>
 
 <script setup lang="ts">
+import { useProductStore } from "@/stores/products";
 import Cart from "../cart/cart.vue";
+import SearchBar from "../shared/search.vue";
+
+const productStore = useProductStore();
 </script>
 
 <style scoped lang="scss">
 .Nav_Container {
-  height: 3rem;
+  height: 60px;
   width: 100%;
+  gap: 1rem;
   display: flex;
   padding: 1rem;
   background-color: var(--color-panel);

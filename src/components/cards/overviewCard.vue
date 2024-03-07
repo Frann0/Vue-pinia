@@ -74,7 +74,7 @@ defineProps<{
       .Card_Title {
         font-size: 1rem;
         font-weight: bold;
-        text-align: center;
+        text-align: left;
       }
       .Card_Description {
         font-size: 1rem;
