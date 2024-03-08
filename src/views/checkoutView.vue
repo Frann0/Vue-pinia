@@ -42,7 +42,7 @@ console.log(cartStore.cart);
     flex-direction: column;
     gap: 20px;
     flex: 1 0 0;
-    overlfow-y: auto;
+    overflow-y: auto;
     overflow-x: hidden;
     .Checkout_NoItems {
       flex: 1;

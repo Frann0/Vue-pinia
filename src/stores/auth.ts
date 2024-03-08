@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { UserCredential, UserInfo } from "@firebase/auth-types";
+import type { UserInfo } from "@firebase/auth-types";
 import { ref } from "vue";
 import type { Ref } from "vue";
 import { initializeApp } from "firebase/app";
@@ -27,7 +27,9 @@ export const useAuthStore = defineStore("auth", () => {
   const app = initializeApp(firebaseConfig);
 
   const auth = getAuth();
-  connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  if (location.hostname === "localhost") {
+    connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  }
 
   const setUser = (u: UserInfo) => {
     user.value = u;
