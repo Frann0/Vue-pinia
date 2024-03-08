@@ -73,6 +73,7 @@ const handleToggleCartDropdown = () => {
     outline: none;
     border: none;
     min-width: 100px;
+    min-height: 40px;
   }
 
   .Cart_DropdownBackdrop {

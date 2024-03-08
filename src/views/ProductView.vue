@@ -111,7 +111,6 @@ const handleSelectColor = (color: string) => {
 };
 
 const handleSelectSize = (size: string) => {
-  console.log(size);
   selectedSize.value = size;
   sizeOpen = false;
 };
@@ -120,9 +119,9 @@ const handleAddToCart = () => {
   cartStore.addToCart(productStore.selectedProduct);
 };
 
-onBeforeMount(async () => {
+onBeforeMount(() => {
   if (productStore.selectedProduct === undefined) {
-    await productStore.selectProductById(Number.parseInt(route.params.id));
+    productStore.selectProductById(Number.parseInt(route.params.id));
   }
 });
 </script>
