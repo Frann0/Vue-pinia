@@ -26,7 +26,7 @@ export const useAuthStore = defineStore("auth", () => {
 
   const app = initializeApp(firebaseConfig);
 
-  const auth = getAuth();
+  const auth = getAuth(app);
   if (location.hostname === "localhost") {
     connectAuthEmulator(auth, "http://127.0.0.1:9099");
   }
