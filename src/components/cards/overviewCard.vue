@@ -6,8 +6,8 @@
           :src="product.image"
           alt="Card Image"
           class="Card_Image"
-          width="200"
-          height="200"
+          width="150"
+          height="150"
         />
       </div>
       <div class="Card_Content">
