@@ -50,6 +50,9 @@ export const useAuthStore = defineStore("auth", () => {
       }
     } catch (error: any) {
       console.log(error);
+      console.log(error.code);
+      console.log(error.message);
+
       if (
         error.code === "auth/user-not-found" ||
         error.message === "INVALID_LOGIN_CREDENTIALS"
