@@ -2,7 +2,13 @@
   <div class="Card_Container" @click="handleSelectProduct(product)">
     <div class="Card_Wrapper">
       <div class="Card_ImageContainer">
-        <img :src="product.image" alt="Card Image" class="Card_Image" />
+        <img
+          :src="product.image"
+          alt="Card Image"
+          class="Card_Image"
+          width="200"
+          height="200"
+        />
       </div>
       <div class="Card_Content">
         <h2 class="Card_Title">{{ product.title }}</h2>

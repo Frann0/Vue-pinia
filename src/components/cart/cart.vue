@@ -16,6 +16,7 @@
           v-for="item in cartStore.getCartItems()"
           :key="item.id"
           :product="item"
+          @click="handleGotoProduct(item.id)"
         />
       </div>
       <div class="Cart_CheckoutContainer">
@@ -36,9 +37,12 @@
 
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cart";
+import { useProductStore } from "@/stores/products";
 import { ref } from "vue";
 import CartItem from "./cartItem.vue";
 import { useRouter } from "vue-router";
+
+const productStore = useProductStore();
 const cartStore = useCartStore();
 const cartOpen = ref(false);
 
@@ -46,6 +50,12 @@ const router = useRouter();
 
 const handleCheckout = () => {
   router.push("/checkout");
+  cartOpen.value = false;
+};
+
+const handleGotoProduct = (id: string) => {
+  productStore.selectProductById(Number.parseInt(id));
+  router.push(`/products/${id}`);
   cartOpen.value = false;
 };
 

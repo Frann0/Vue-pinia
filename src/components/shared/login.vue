@@ -2,21 +2,21 @@
   <div class="Login_Container">
     <div class="Login_NotLoggedIn" v-if="authStore.user === undefined">
       <button class="Login_Button" @click="handleOpen">Login</button>
-      <div class="Login_Wrapper" v-if="isOpen">
+      <form class="Login_Wrapper" v-if="isOpen" @submit.prevent="login">
         <input
           type="text"
           class="Login_Input"
           placeholder="Username"
-          @input="username = $event.target.value"
+          @input="(e) => handleSetUsername(e)"
         />
         <input
           type="password"
           class="Login_Input"
           placeholder="Password"
-          @input="password = $event.target.value"
+          @input="(e) => handleSetPassword(e)"
         />
         <button class="Login_Button" @click="login">Submit</button>
-      </div>
+      </form>
     </div>
     <div class="Login_LoggedIn" v-else @click="handleOpen">
       <p class="Login_User">{{ authStore.user.email }}</p>
@@ -48,6 +48,13 @@ const handleOpen = () => {
 
 const login = async () => {
   await authStore.signIn(username.value, password.value);
+};
+
+const handleSetPassword = (event: Event) => {
+  password.value = (event.target as HTMLInputElement).value;
+};
+const handleSetUsername = (event: Event) => {
+  username.value = (event.target as HTMLInputElement).value;
 };
 
 const logout = async () => {
@@ -82,6 +89,7 @@ const logout = async () => {
       cursor: pointer;
       border-radius: 10px;
       min-width: 150px;
+      height: 40px;
       &:focus {
         outline: none;
       }
